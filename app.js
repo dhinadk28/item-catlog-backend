@@ -25,7 +25,7 @@ const app=express();
 app.use(express.static(path.join(__dirname,'public')));
 
 app.use(cors({
-    origin:['https://63c7f0d1c3846526849d0028--clever-gaufre-442a0b.netlify.app','*'],
+    origin:['https://clever-gaufre-442a0b.netlify.app','*'],
     methods:['GET','POST','PUT','DELETE'],
     
     credentials:true
