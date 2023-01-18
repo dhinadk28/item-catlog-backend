@@ -1,11 +1,27 @@
+
+
 const express = require('express');
-const app=express();
 const cookieParser=require('cookie-parser');
 const bodyParser=require('body-parser');
 const cors=require('cors');
 const errorMiddleware=require('./middleware/error');
+const category=require('./routes/categoryRoute');
+const brand=require('./routes/brandRoute');
+const user=require('./routes/userRoute');
+const store=require('./routes/storeRoute');
+const product=require('./routes/productRoute');
+const review=require('./routes/reviewRoute');
 
 const path=require('path');
+
+
+
+const connectDatabase=require('./config/database');
+
+const dotenv=require('dotenv');
+
+const app=express();
+
 app.use(express.static(path.join(__dirname,'public')));
 
 // app.use(cors({
@@ -19,12 +35,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended:true}));
 
-const category=require('./routes/categoryRoute');
-const brand=require('./routes/brandRoute');
-const user=require('./routes/userRoute');
-const store=require('./routes/storeRoute');
-const product=require('./routes/productRoute');
-const review=require('./routes/reviewRoute');
+
 app.use('/api/v1',category);
 app.use('/api/v1',brand);
 app.use('/api/v1',user);
@@ -33,5 +44,14 @@ app.use('/api/v1',product);
 app.use('/api/v1',review);
 
 
-app.use(errorMiddleware);
-module.exports=app;
+// app.use(errorMiddleware);
+const port=process.env.PORT || 9000;
+
+if(process.env.NODE_ENV !=='PRODUCTION'){
+    dotenv.config({path:'config/.env'})
+}
+
+app.listen(port,()=>{
+    console.log(`server running on http://localhost:${port}`);
+    connectDatabase();
+})
