@@ -1,4 +1,5 @@
 const app=require('./app');
+const cors=require('cors');
 
 const path=require('path');
 
