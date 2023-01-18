@@ -9,10 +9,11 @@ const path=require('path');
 app.use(express.static(path.join(__dirname,'public')));
 
 app.use(cors({
-    origin:['http://localhost:3000','*'],
+    origin:['https://splendorous-ganache-78f358.netlify.app','*'],
     methods:['GET','POST','PUT','DELETE'],
     credentials:true
 }));
+
 
 app.use(express.json());
 app.use(cookieParser());
