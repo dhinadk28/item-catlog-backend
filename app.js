@@ -24,12 +24,14 @@ const app=express();
 
 app.use(express.static(path.join(__dirname,'public')));
 
+app.use(cors({
+    origin:['http://localhost:3000','*'],
+    methods:['GET','POST','PUT','DELETE'],
+    credentials:true
+}));
 // app.use(cors({
-//     origin:['https://item-catlog-backend.onrender.com','*'],
-//     methods:['GET','POST','PUT','DELETE'],
-//     credentials:true
-// }));
-app.use(cors())
+//     origin: "http://localhost:3000"
+// }))
 
 app.use(express.json());
 app.use(cookieParser());
@@ -43,9 +45,9 @@ app.use('/api/v1',store);
 app.use('/api/v1',product);
 app.use('/api/v1',review);
 
-headers('Access-Control-Allow-Origin: *')
-headers('Access-Control-Allow-Origin: POST, GET, OPTIONS, PUT, DELETE')
-headers('Access-Control-Allow-Origin: Content-Type, X-Auth-Token, Origin, Authorization')
+// headers('Access-Control-Allow-Origin: *')
+// headers('Access-Control-Allow-Origin: POST, GET, OPTIONS, PUT, DELETE')
+// headers('Access-Control-Allow-Origin: Content-Type, X-Auth-Token, Origin, Authorization')
 
 
 // app.use(errorMiddleware);
