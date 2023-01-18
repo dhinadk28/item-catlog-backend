@@ -16,7 +16,7 @@ if(process.env.NODE_ENV !=='PRODUCTION'){
     dotenv.config({path:'config/.env'})
 }
 
-const server=app.listen(port,()=>{
+app.listen(port,()=>{
     console.log(`server running on http://localhost:${port}`);
     connectDatabase();
 })
