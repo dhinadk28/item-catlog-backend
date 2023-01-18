@@ -43,6 +43,10 @@ app.use('/api/v1',store);
 app.use('/api/v1',product);
 app.use('/api/v1',review);
 
+headers('Access-Control-Allow-Origin: *')
+headers('Access-Control-Allow-Origin: POST, GET, OPTIONS, PUT, DELETE')
+headers('Access-Control-Allow-Origin: Content-Type, X-Auth-Token, Origin, Authorization')
+
 
 // app.use(errorMiddleware);
 const port=process.env.PORT || 9000;
